@@ -1,4 +1,10 @@
+server:
+  contextPath: /question-service/${application.api.version}
+application:
+  api:
+    version: v1
 spring:
     data:
         mongodb:
-            uri:mongodb://localhost:27017/questions
+#            uri:mongodb://localhost:27017/questions
+            uri: mongodb://localhost:30017/questions

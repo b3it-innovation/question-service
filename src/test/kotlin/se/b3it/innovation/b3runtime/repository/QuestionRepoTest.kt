@@ -22,11 +22,11 @@ class QuestionRepoTest {
 
     @Test
     fun testStoreDate() : Unit {
-        val q1 = questionRepository.save(Question(question = "How long is a day?", rightAnswer = "24 Hours",
+        val q1 = questionRepository.save(Question(question = "How long is a day?", rightAnswers = listOf("24 Hours"),
                 faultyAnswers = listOf("10 Hours", "15 Hours", "16 Hours"),category = Category.SCIENCE,
                 difficultyLevel = 1))
 
-        val q2 = questionRepository.save(Question(question = "How many days in January?", rightAnswer = "31 days",
+        val q2 = questionRepository.save(Question(question = "How many days in January?", rightAnswers = listOf("31 days"),
                 faultyAnswers = listOf("10 days", "30 Hours", "29 Hours"),category = Category.SCIENCE,
                 difficultyLevel = 1))
 

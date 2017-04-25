@@ -13,9 +13,8 @@ import se.b3it.innovation.b3runtime.qa.repository.QuestionRepository
 class QuestionController(val questionRepository : QuestionRepository) {
 
     @PostMapping("/import") @ResponseStatus(HttpStatus.CREATED)
-    fun addQuestion(@RequestBody question: Question) : String? {
-        return questionRepository.save(question).id
-    }
+    fun addQuestion(@RequestBody questions: List<Question>) = questionRepository.save(questions)
+            .map {(id) -> id}.toList()
 
     @GetMapping("/question/{id}")
     @ResponseStatus(HttpStatus.OK)

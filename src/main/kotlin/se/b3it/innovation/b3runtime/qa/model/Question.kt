@@ -20,8 +20,8 @@ enum class Category {
 
 @Document(collection = "questions")
 data class Question @PersistenceConstructor constructor( @Id val id : String? = null,
-                      val question: String,
-                      val rightAnswers : List<String>,
-                      val faultyAnswers: List<String>,
+                      val question: QuestionData,
+                      val rightAnswers : List<QuestionData>,
+                      val faultyAnswers: List<QuestionData>,
                       val difficultyLevel: Int,
                       val category: Category)

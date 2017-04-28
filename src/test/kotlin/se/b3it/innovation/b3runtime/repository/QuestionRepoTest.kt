@@ -4,10 +4,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.core.io.ClassPathResource
 import org.springframework.test.context.junit4.SpringRunner
+import org.springframework.util.FileCopyUtils
 import se.b3it.innovation.b3runtime.qa.model.Category
 import se.b3it.innovation.b3runtime.qa.model.Question
+import se.b3it.innovation.b3runtime.qa.model.QuestionData
 import se.b3it.innovation.b3runtime.qa.repository.QuestionRepository
+import java.util.*
 
 /**
  * Created by keyhan on 2017-04-24.
@@ -19,15 +23,22 @@ class QuestionRepoTest {
     @Autowired
     lateinit var questionRepository : QuestionRepository
 
-
     @Test
     fun testStoreDate() : Unit {
-        val q1 = questionRepository.save(Question(question = "How long is a day?", rightAnswers = listOf("24 Hours"),
-                faultyAnswers = listOf("10 Hours", "15 Hours", "16 Hours"),category = Category.SCIENCE,
+        val cpr = ClassPathResource("si.jpg")
+        val encoded = Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(cpr.inputStream))
+        val q1 = questionRepository.save(Question(question = QuestionData(text = "How long is a day?", data =
+        String(encoded)),
+
+                rightAnswers = listOf(QuestionData("24 Hours")),
+                faultyAnswers = listOf(QuestionData("10 Hours"), QuestionData("15 Hours"), QuestionData("16 Hours"))
+                ,category = Category.SCIENCE,
                 difficultyLevel = 1))
 
-        val q2 = questionRepository.save(Question(question = "How many days in January?", rightAnswers = listOf("31 days"),
-                faultyAnswers = listOf("10 days", "30 Hours", "29 Hours"),category = Category.SCIENCE,
+        val q2 = questionRepository.save(Question(question = QuestionData("How many days in January?"),
+                rightAnswers = listOf(QuestionData("31 days")),
+                faultyAnswers = listOf(QuestionData("10 days"), QuestionData("30 Hours"), QuestionData("29 Hours")),
+                        category = Category.SCIENCE,
                 difficultyLevel = 1))
 
         println(q1.id)

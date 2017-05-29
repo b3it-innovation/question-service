@@ -9,3 +9,4 @@ This Service:
 For this service to work, you need to:
 1. Have access to a MongoDB
 1. Configure the MongoDB properties (url, user, password) in the application.yml file of this service.
+1. If you have problems building this project with a local gradle installation, use the gradlew or gradlew.bat script in the project instead.
